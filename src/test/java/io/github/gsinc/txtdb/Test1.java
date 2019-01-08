@@ -4,10 +4,7 @@ import com.google.common.base.Charsets;
 import com.google.common.io.Resources;
 import org.junit.Test;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URL;
 
 public class Test1 {
@@ -24,14 +21,15 @@ public class Test1 {
         InputStream resourceAsStream = Test1.class.getResourceAsStream("data.txt");
         InputStreamReader irs = new InputStreamReader(resourceAsStream);
         BufferedReader bufferedReader = new BufferedReader(irs);
-        Main.doProcessing(FilterField.CITY, "BARCELONA", bufferedReader);
+
+        new FileProcessor(FilterField.CITY, "BARCELONA").processOutput(bufferedReader);
     }
     @Test
     public void test_do_processing_2() throws IOException {
         InputStream resourceAsStream = Test1.class.getResourceAsStream("data.txt");
         InputStreamReader irs = new InputStreamReader(resourceAsStream);
         BufferedReader bufferedReader = new BufferedReader(irs);
-        Main.doProcessing(FilterField.ID, "25384390A", bufferedReader);
+        new FileProcessor(FilterField.ID, "25384390A").processOutput(bufferedReader);
     }
 
 }
