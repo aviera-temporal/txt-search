@@ -15,7 +15,8 @@ public class Main {
         String fieldValue = args[2];
         BufferedReader readable = Files.newReader(new File(filename), Charsets.UTF_8);
         FileProcessor fileProcessor = new FileProcessor(filterField, fieldValue);
-        fileProcessor.processOutput(readable, new OutputHandler<>(System.out));
+        OutputHandler<Person> output = new OutputHandler<>(System.out, Person::toString);
+        fileProcessor.processOutput(readable, output);
     }
 
 }

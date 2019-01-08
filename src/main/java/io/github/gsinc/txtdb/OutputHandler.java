@@ -1,13 +1,16 @@
 package io.github.gsinc.txtdb;
 
 import java.io.PrintStream;
+import java.util.function.Function;
 
 public class OutputHandler<T> {
     private PrintStream output;
+    private Function<T, String> objectFormatter;
     private boolean first = true;
 
-    public OutputHandler(PrintStream output){
+    public OutputHandler(PrintStream output, Function<T, String> objectFormatter){
         this.output = output;
+        this.objectFormatter = objectFormatter;
     }
     public void beginCollection(){
         output.println("[");
@@ -16,7 +19,7 @@ public class OutputHandler<T> {
     public void writeObject(T object) {
         if(!first)
             output.println(",");
-        output.print("\t" + object.toString());
+        output.print("\t" + objectFormatter.apply(object));
         first = false;
     }
 
