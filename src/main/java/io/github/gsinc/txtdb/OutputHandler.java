@@ -3,12 +3,12 @@ package io.github.gsinc.txtdb;
 import java.io.PrintStream;
 import java.util.function.Function;
 
-public class OutputHandler<T> {
+public class OutputHandler {
     private PrintStream output;
-    private Function<T, String> objectFormatter;
+    private Function<Person, String> objectFormatter;
     private boolean first = true;
 
-    public OutputHandler(PrintStream output, Function<T, String> objectFormatter){
+    public OutputHandler(PrintStream output, Function<Person, String> objectFormatter){
         this.output = output;
         this.objectFormatter = objectFormatter;
     }
@@ -16,7 +16,7 @@ public class OutputHandler<T> {
         output.println("[");
     }
 
-    public void writeObject(T object) {
+    public void writeObject(Person object) {
         if(!first)
             output.println(",");
         output.print("\t" + objectFormatter.apply(object));

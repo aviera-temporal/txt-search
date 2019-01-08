@@ -22,14 +22,14 @@ public class Test1 {
         InputStreamReader irs = new InputStreamReader(resourceAsStream);
         BufferedReader bufferedReader = new BufferedReader(irs);
 
-        new FileProcessor(FilterField.CITY, "BARCELONA").processOutput(bufferedReader, new OutputHandler<>(System.out, Person::toString));
+        new FileProcessor(FilterField.CITY, "BARCELONA").processOutput(bufferedReader, new OutputHandler(System.out, Person::toString));
     }
     @Test
     public void test_do_processing_2() throws IOException {
         InputStream resourceAsStream = Test1.class.getResourceAsStream("data.txt");
         InputStreamReader irs = new InputStreamReader(resourceAsStream);
         BufferedReader bufferedReader = new BufferedReader(irs);
-        new FileProcessor(FilterField.ID, "25384390A").processOutput(bufferedReader, new OutputHandler<>(System.out, Person::toString));
+        new FileProcessor(FilterField.ID, "25384390A").processOutput(bufferedReader, new OutputHandler(System.out, Person::toString));
     }
 
 }

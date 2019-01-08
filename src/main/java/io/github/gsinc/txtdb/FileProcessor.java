@@ -12,7 +12,7 @@ public class FileProcessor {
         this.fieldValue = fieldValue;
     }
 
-    public void processOutput(BufferedReader readable, OutputHandler<Person> output) throws IOException {
+    public void processOutput(BufferedReader readable, OutputHandler output) throws IOException {
         String line = readable.readLine();
         LineProcessor lineProcessor = new LineProcessor();
         output.beginCollection();
