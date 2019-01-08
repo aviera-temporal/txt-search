@@ -26,7 +26,7 @@ public class FileProcessor {
                     break;
                 default:
                     Person person = lineProcessor.processLine(line);
-                    if (this.fieldValue.equals(this.filterField.getExtractor().apply(person))) {
+                    if (this.fieldValue.equals(this.filterField.of(person))) {
                         output.writeObject(person);
                     }
                     break;

@@ -8,11 +8,10 @@ public enum FilterField  {
     CITY(Person::getCity),
     ID(Person::getId);
 
-    public Function<Person, String> getExtractor() {
-        return extractor;
-    }
-
     private Function<Person, String> extractor;
+    public String of(Person p){
+        return this.extractor.apply(p);
+    }
     FilterField(Function<Person, String> extractor){
         this.extractor = extractor;
     }
