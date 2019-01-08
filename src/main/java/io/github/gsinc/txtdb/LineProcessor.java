@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class LineProcessor {
     private Format format;
-    private static Map<Format, Parser> formatToParser = ImmutableMap.of(Format.F1, new F1Parser(), Format.F2, new F2Parser());
+    private static Map<Format, Parser> formatToParser = ImmutableMap.of(Format.F1, new Parser(","), Format.F2, new Parser(" ; "));
 
     public void setFormat(Format format) {
         this.format = format;
