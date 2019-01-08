@@ -2,12 +2,10 @@ package io.github.gsinc.txtdb;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.PrintStream;
 
 public class FileProcessor {
     private FilterField filterField;
     private String fieldValue;
-    private static boolean first = true;
 
     public FileProcessor(FilterField filterField, String fieldValue) {
         this.filterField = filterField;
@@ -18,8 +16,8 @@ public class FileProcessor {
         String line = readable.readLine();
         LineProcessor lineProcessor = new LineProcessor();
         output.beginCollection();
-        while(line!=null){
-            switch (line){
+        while (line != null) {
+            switch (line) {
                 case "F1":
                     lineProcessor.setFormat(LineProcessor.Format.F1);
                     break;
@@ -28,9 +26,8 @@ public class FileProcessor {
                     break;
                 default:
                     Person person = lineProcessor.processLine(line);
-                    if(this.fieldValue.equals(this.filterField.getExtractor().apply(person))){
+                    if (this.fieldValue.equals(this.filterField.getExtractor().apply(person))) {
                         output.writeObject(person);
-                        first = false;
                     }
                     break;
             }
