@@ -14,10 +14,10 @@ public class FileProcessor {
         this.fieldValue = fieldValue;
     }
 
-    public void processOutput(BufferedReader readable, PrintStream output) throws IOException {
+    public void processOutput(BufferedReader readable, OutputHandler<Person> output) throws IOException {
         String line = readable.readLine();
         LineProcessor lineProcessor = new LineProcessor();
-        output.println("[");
+        output.beginCollection();
         while(line!=null){
             switch (line){
                 case "F1":
@@ -29,16 +29,13 @@ public class FileProcessor {
                 default:
                     Person person = lineProcessor.processLine(line);
                     if(this.fieldValue.equals(this.filterField.getExtractor().apply(person))){
-                        if(!first)
-                            output.println(",");
-                        output.print("\t" + person);
+                        output.writeObject(person);
                         first = false;
                     }
                     break;
             }
             line = readable.readLine();
         }
-        output.println();
-        output.println("]");
+        output.endCollection();
     }
 }
